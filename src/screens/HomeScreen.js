@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect, useCallback} from 'react';
+import {useDispatch} from 'react-redux';
 import {
   SafeAreaView,
   StyleSheet,
@@ -6,6 +7,7 @@ import {
   View,
   Text,
   StatusBar,
+  Alert,
 } from 'react-native';
 
 import {
@@ -15,8 +17,48 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import {
+  getMoviePopular,
+  getMovieInTheater,
+  getMovieDetail,
+} from '../store/actions/movie';
 
 const HomeScreen = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    popularMovie();
+    inTheaterMovie();
+    // detailMovie();
+  }, []);
+
+  const popularMovie = useCallback(async () => {
+    try {
+      dispatch(getMoviePopular(true));
+    } catch (error) {
+      console.log('popularMovie: ', error);
+      Alert.alert('Something Wrong');
+    }
+  });
+
+  const inTheaterMovie = useCallback(async () => {
+    try {
+      dispatch(getMovieInTheater(true));
+    } catch (error) {
+      console.log('inTheaterMovie: ', error);
+      Alert.alert('Something Wrong');
+    }
+  });
+
+  // const detailMovie = useCallback(async () => {
+  //   try {
+  //     dispatch(getMovieDetail(512200));
+  //   } catch (error) {
+  //     console.log('inTheaterMovie: ', error);
+  //     Alert.alert('Something Wrong');
+  //   }
+  // });
+
   return (
     <>
       <SafeAreaView>

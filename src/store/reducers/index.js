@@ -1,9 +1,9 @@
-import {
-    combineReducers
-} from 'redux';
+import {combineReducers} from 'redux';
 
-import globalState from './globalState'
+import globalReducer from './globalreducer';
+import movieReducer from './movieReducer';
 
 export default combineReducers({
-    globalState
-})
+  globalReducer,
+  movieReducer,
+});

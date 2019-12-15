@@ -1,16 +1,16 @@
 import React from 'react';
-import { createAppContainer } from 'react-navigation';
-import { createBottomTabNavigator } from 'react-navigation-tabs'
-import { Text, View } from 'react-native';
+import {createAppContainer} from 'react-navigation';
+import {createBottomTabNavigator} from 'react-navigation-tabs';
+import {Text, View} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import HomeScreen from './HomeScreen'
-import AboutScreen from './AboutScreen'
+import HomeScreen from './HomeScreen';
+import AboutScreen from './AboutScreen';
 
 class IconWithBadge extends React.Component {
   render() {
-    const { name, badgeCount, color, size } = this.props;
+    const {name, badgeCount, color, size} = this.props;
     return (
-      <View style={{ width: 24, height: 24, margin: 5 }}>
+      <View style={{width: 24, height: 24, margin: 5}}>
         <Ionicons name={name} size={size} color={color} />
         {badgeCount > 0 && (
           <View
@@ -27,7 +27,7 @@ class IconWithBadge extends React.Component {
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            <Text style={{ color: 'white', fontSize: 10, fontWeight: 'bold' }}>
+            <Text style={{color: 'white', fontSize: 10, fontWeight: 'bold'}}>
               {badgeCount}
             </Text>
           </View>
@@ -43,7 +43,7 @@ const HomeIconWithBadge = props => {
 };
 
 const getTabBarIcon = (navigation, focused, tintColor) => {
-  const { routeName } = navigation.state;
+  const {routeName} = navigation.state;
   let IconComponent = Ionicons;
   let iconName;
   if (routeName === 'Home') {
@@ -61,18 +61,18 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
 export default createAppContainer(
   createBottomTabNavigator(
     {
-      Home: { screen: HomeScreen },
-      About: { screen: AboutScreen },
+      Home: {screen: HomeScreen},
+      About: {screen: AboutScreen},
     },
     {
-      defaultNavigationOptions: ({ navigation }) => ({
-        tabBarIcon: ({ focused, tintColor }) =>
+      defaultNavigationOptions: ({navigation}) => ({
+        tabBarIcon: ({focused, tintColor}) =>
           getTabBarIcon(navigation, focused, tintColor),
       }),
       tabBarOptions: {
         activeTintColor: 'tomato',
         inactiveTintColor: 'gray',
       },
-    }
-  )
+    },
+  ),
 );
